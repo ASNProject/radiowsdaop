@@ -42,4 +42,22 @@ class VAmpsController extends Controller
         $data = VAmps::latest()->first();
         return new VApmsResource(true, 'Latest VAmps data', $data);
     }
+
+    public function getChartData()
+{
+    // Ambil data voltage dan current dari database
+    $data = VAmps::select('voltage', 'current', 'created_at')->get();
+
+    // Mengubah data menjadi format yang cocok untuk Chart.js
+    $chartData = $data->map(function ($item) {
+        return [
+            'timestamp' => $item->created_at->toDateTimeString(),
+            'voltage' => $item->voltage,
+            'current' => $item->current
+        ];
+    });
+
+    // Kembalikan data dalam format JSON
+    return new VApmsResource(true, 'Chart data', $chartData);
+}
 }

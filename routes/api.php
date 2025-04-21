@@ -9,4 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/vamps/latest', [VAmpsController::class, 'latest']);
+Route::get('/vamps/chart', [VAmpsController::class, 'getChartData']);
 Route::apiResource('/vamps', 'App\Http\Controllers\Api\VAmpsController');
