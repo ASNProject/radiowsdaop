@@ -11,7 +11,13 @@
         <div class="p-3 w-100">
             <div class="p-3 mb-4 bg-light rounded-3">
                 <div class="container-fluid">
-                    <h1 class="display-5 fw-bold mb-5">Home</h1>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h1 class="display-5 fw-bold mb-5">Data</h1>
+                        <div class="d-flex gap-2 ms-auto">
+                            <img src="{{ asset('assets/logo ppi.png')}}" alt="Logo" style="height: 30px; margin-right: 10px;">
+                            <img src="{{ asset('assets/kai.png')}}" alt="Logo" style="height: 30px;">
+                        </div>
+                    </div>
                     <h4>Realtime Data</h4>
                 
                     <!-- Wrapper untuk voltage gauge -->
