@@ -36,4 +36,10 @@ class VAmpsController extends Controller
         ]);
         return new VApmsResource(true, 'VAmps created successfully', $vamps);
     }
+
+    public function latest()
+    {
+        $data = VAmps::latest()->first();
+        return new VApmsResource(true, 'Latest VAmps data', $data);
+    }
 }
