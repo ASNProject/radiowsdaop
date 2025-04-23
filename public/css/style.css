@@ -114,3 +114,11 @@
     background-color: #dc3545;
     color: white;
 }
+
+.indicator-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-top: 10px;
+    background-color: gray;
+}

@@ -12,7 +12,7 @@
             <div class="p-3 mb-4 bg-light rounded-3">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h1 class="display-5 fw-bold mb-5">Data</h1>
+                        <h1 class="display-5 fw-bold mb-5">Home</h1>
                         <div class="d-flex gap-2 ms-auto">
                             <img src="{{ asset('assets/logo ppi.png')}}" alt="Logo" style="height: 30px; margin-right: 10px;">
                             <img src="{{ asset('assets/kai.png')}}" alt="Logo" style="height: 30px;">
@@ -25,6 +25,7 @@
                         <div class="col-3 text-center">
                             <span><strong>Voltage</strong></span>
                             <p id="voltage" style="font-size: 1.5rem;">Loading...</p>
+                            <div id="voltage-indicator" class="indicator-circle mx-auto"></div>
                         </div>
                         <div class="col-6">
                             <div id="voltage-gauge" style="width: 200px; height: 160px; margin: 0 auto;"></div>
@@ -39,6 +40,7 @@
                         <div class="col-3 text-center">
                             <span><strong>Current</strong></span>
                             <p id="current" style="font-size: 1.5rem;">Loading...</p>
+                            <div id="current-indicator" class="indicator-circle mx-auto"></div>
                         </div>
                         <div class="col-6">
                             <div id="current-gauge" style="width: 200px; height: 160px; margin: 0 auto;"></div>
@@ -82,6 +84,20 @@
                     // Update teks di bawah gauge
                     $('#voltage').text(voltage.toFixed(2));
                     $('#current').text(current.toFixed(2));
+
+                        // Update indikator Voltage
+                    if (voltage >= 11 && voltage <= 14) {
+                        $('#voltage-indicator').css('background-color', 'green');
+                    } else {
+                        $('#voltage-indicator').css('background-color', 'red');
+                    }
+
+                    // Update indikator Current
+                    if (current >= 0.18 && current <= 5) {
+                        $('#current-indicator').css('background-color', 'green');
+                    } else {
+                        $('#current-indicator').css('background-color', 'red');
+                    }
                 },
                 error: function(err) {
                     console.error('Error fetching data', err);
@@ -104,7 +120,7 @@
             id: "current-gauge",
             value: 0, // Nilai awal
             min: 0,
-            max: 100, // Atur nilai max untuk current, sesuaikan dengan range yang diinginkan
+            max: 20, // Atur nilai max untuk current, sesuaikan dengan range yang diinginkan
             title: "Current",
             label: "A"
         });
