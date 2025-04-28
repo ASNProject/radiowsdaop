@@ -1,6 +1,6 @@
 <div class="bg-light sidebar p-3 d-flex flex-column" style="width: 250px; height: 100vh; border-right: 2px solid #ddd;">
     <div style="display: flex; align-items: center;" class="mb-4">
-        <img src="{{ asset('assets/1.png')}}" alt="Logo" style="height: 40px;">
+        <img src="{{ asset('assets/logo-1.png')}}" alt="Logo" style="height: 40px;">
         <h3 class="text-left" style="margin-right: 10px;">Radiowsdaop</h3>
     </div>
     <ul class="nav flex-column mb-auto" id="sidebar">

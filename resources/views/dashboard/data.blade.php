@@ -14,8 +14,9 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h1 class="display-5 fw-bold mb-5">Data</h1>
                         <div class="d-flex gap-2 ms-auto">
-                            <img src="{{ asset('assets/logo ppi.png')}}" alt="Logo" style="height: 30px; margin-right: 10px;">
-                            <img src="{{ asset('assets/kai.png')}}" alt="Logo" style="height: 30px;">
+                            <img src="{{ asset('assets/kai.png')}}" alt="Logo" style="height: 30px; margin-right: 15px;">
+                            <img src="{{ asset('assets/logo ppi.png')}}" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -5px;">
+                            <img src="{{ asset('assets/1.png')}}" alt="Logo" style="height: 50px; margin-top: -8px;">
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-3">

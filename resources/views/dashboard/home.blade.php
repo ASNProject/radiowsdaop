@@ -14,8 +14,9 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h1 class="display-5 fw-bold mb-5">Home</h1>
                         <div class="d-flex gap-2 ms-auto">
-                            <img src="{{ asset('assets/logo ppi.png')}}" alt="Logo" style="height: 30px; margin-right: 10px;">
-                            <img src="{{ asset('assets/kai.png')}}" alt="Logo" style="height: 30px;">
+                            <img src="{{ asset('assets/kai.png')}}" alt="Logo" style="height: 30px; margin-right: 15px;">
+                            <img src="{{ asset('assets/logo ppi.png')}}" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -5px;">
+                            <img src="{{ asset('assets/1.png')}}" alt="Logo" style="height: 50px; margin-top: -8px;">
                         </div>
                     </div>
                     <h4>Realtime Data</h4>
@@ -23,7 +24,7 @@
                     <!-- Wrapper untuk voltage gauge -->
                     <div class="row justify-content-center align-items-center mb-4">
                         <div class="col-3 text-center">
-                            <span><strong>Voltage</strong></span>
+                            <span><strong>Real Data Voltage</strong></span>
                             <p id="voltage" style="font-size: 1.5rem;">Loading...</p>
                             <div id="voltage-indicator" class="indicator-circle mx-auto"></div>
                         </div>
@@ -38,7 +39,7 @@
                     <!-- Wrapper untuk current gauge -->
                     <div class="row justify-content-center align-items-center mb-4">
                         <div class="col-3 text-center">
-                            <span><strong>Current</strong></span>
+                            <span><strong>Real Data Current</strong></span>
                             <p id="current" style="font-size: 1.5rem;">Loading...</p>
                             <div id="current-indicator" class="indicator-circle mx-auto"></div>
                         </div>
@@ -82,22 +83,41 @@
                     currentGauge.refresh(current);
 
                     // Update teks di bawah gauge
-                    $('#voltage').text(voltage.toFixed(2));
-                    $('#current').text(current.toFixed(2));
+                    $('#voltage').text(voltage.toFixed(2) + ' V');
+                    $('#current').text(current.toFixed(2) + ' A');
 
                         // Update indikator Voltage
                     if (voltage >= 11 && voltage <= 14) {
                         $('#voltage-indicator').css('background-color', 'green');
+                        $('#voltage-gauge .justgage .fill').css('fill', 'green'); 
                     } else {
                         $('#voltage-indicator').css('background-color', 'red');
+                        $('#voltage-gauge .justgage .fill').css('fill', 'red');
                     }
 
                     // Update indikator Current
                     if (current >= 0.18 && current <= 5) {
                         $('#current-indicator').css('background-color', 'green');
+                        $('#current-gauge .justgage .fill').css('fill', 'green');
                     } else {
                         $('#current-indicator').css('background-color', 'red');
+                        $('#current-gauge .justgage .fill').css('fill', 'red');
                     }
+                    // Cek warna voltage
+                    var voltageColor = (voltage >= 11 && voltage <= 14) ? 'green' : 'red';
+                    $('#voltage-indicator').css('background-color', voltageColor);
+
+                    // Cek warna current
+                    var currentColor = (current >= 0.18 && current <= 5) ? 'green' : 'red';
+                    $('#current-indicator').css('background-color', currentColor);
+
+                    // Update warna Gague Voltage
+                    voltageGauge.config.levelColors = [voltageColor];
+                    voltageGauge.refresh(voltage);
+
+                    // Update warna Gauge Current
+                    currentGauge.config.levelColors = [currentColor];
+                    currentGauge.refresh(current);
                 },
                 error: function(err) {
                     console.error('Error fetching data', err);
@@ -110,7 +130,7 @@
             id: "voltage-gauge",
             value: 0, // Nilai awal
             min: 0,
-            max: 220, // Atur nilai max untuk voltage, sesuaikan dengan range yang diinginkan
+            max: 50, // Atur nilai max untuk voltage, sesuaikan dengan range yang diinginkan
             title: "Voltage",
             label: "V"
         });
@@ -120,7 +140,7 @@
             id: "current-gauge",
             value: 0, // Nilai awal
             min: 0,
-            max: 20, // Atur nilai max untuk current, sesuaikan dengan range yang diinginkan
+            max: 100, // Atur nilai max untuk current, sesuaikan dengan range yang diinginkan
             title: "Current",
             label: "A"
         });
