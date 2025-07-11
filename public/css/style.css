@@ -122,3 +122,50 @@
     margin-top: 10px;
     background-color: gray;
 }
+
+/* Styling untuk sidebar agar responsif */
+@media (max-width: 767px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Menyembunyikan sidebar di awal */
+        width: 250px;
+        height: 100vh;
+        transition: left 0.3s ease;
+    }
+
+    #sidebar.show {
+        left: 0; /* Menampilkan sidebar ketika toggle */
+    }
+
+    /* Menambahkan padding untuk konten jika sidebar ditampilkan */
+    body.sidebar-open #content {
+        margin-left: 250px;
+    }
+
+    /* Menyembunyikan tombol menu jika sidebar sudah tampil */
+    #toggleSidebar.show {
+        display: none;
+    }
+}
+
+/* Styling untuk toggle button */
+#toggleSidebar {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+/* Untuk halaman besar, sidebar tetap terlihat */
+@media (min-width: 768px) {
+    #sidebar {
+        position: relative;
+        left: 0;
+    }
+
+    #toggleSidebar {
+        display: none; /* Menyembunyikan tombol toggle di desktop */
+    }
+}

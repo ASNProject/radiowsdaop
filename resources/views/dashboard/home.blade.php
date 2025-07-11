@@ -75,8 +75,8 @@
                     // $('#current').text(data.data.current);
 
                     // Ambil nilai voltage dan current dari data yang diterima
-                    var voltage = data.data.voltage;
-                    var current = data.data.current;
+                    var voltage = parseFloat(data.data.voltage);
+                    var current = parseFloat(data.data.current);
 
                     // Update nilai pada gauge
                     voltageGauge.refresh(voltage);
