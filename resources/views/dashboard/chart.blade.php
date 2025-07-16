@@ -12,7 +12,7 @@
             <div class="p-3 mb-4 bg-light rounded-3">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h1 class="display-5 fw-bold mb-5">Chart</h1>
+                        <h1 class="display-5 fw-bold mb-5">Chart Arus dan Tegangan</h1>
                         <div class="d-flex gap-2 ms-auto">
                             <img src="{{ asset('assets/kai.png')}}" alt="Logo" style="height: 30px; margin-right: 15px;">
                             <img src="{{ asset('assets/logo ppi.png')}}" alt="Logo" style="height: 40px; margin-right: 10px; margin-top: -5px;">
@@ -36,7 +36,17 @@
             .then(response => {
                 const data = response.data; // ✅ Akses array-nya
 
-                const labels = data.map(item => item.timestamp);
+                // const labels = data.map(item => item.timestamp);
+                const labels = data.map(item => {
+                    const date = new Date(item.timestamp);
+                    return date.toLocaleString('id-ID', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                });
                 const voltageData = data.map(item => item.voltage);
                 const currentData = data.map(item => item.current);
 
@@ -47,14 +57,14 @@
                         labels: labels,
                         datasets: [
                             {
-                                label: 'Voltage',
+                                label: 'Tegangan',
                                 data: voltageData,
                                 borderColor: 'rgba(255, 99, 132, 1)',
                                 borderWidth: 2,
                                 fill: false
                             },
                             {
-                                label: 'Current',
+                                label: 'Arus',
                                 data: currentData,
                                 borderColor: 'rgba(54, 162, 235, 1)',
                                 borderWidth: 2,

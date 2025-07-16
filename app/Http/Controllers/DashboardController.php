@@ -19,7 +19,7 @@ class DashboardController extends Controller
     }
     public function data(Request $request)
     {
-        $data = VAmps::simplePaginate(10);
+        $data = VAmps::latest()->simplePaginate(10);
         return view('dashboard.data', compact('data'));
     }
 
